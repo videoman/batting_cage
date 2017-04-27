@@ -6,6 +6,9 @@ pygame is free from: http://www.pygame.org
 '''
 
 import pygame as pg
+import os
+import time
+import random
 
 def play_music(music_file, volume=0.8):
     '''
@@ -37,10 +40,18 @@ def play_music(music_file, volume=0.8):
 # otherwise give the full file path
 # (try other sound file formats too)
 # music_file = "Hot80s.mp3"
-music_file = "/home/pi/batting_cage/Sounds/22p-pImperialpMarch.mp3"
+# usic_file = "/home/pi/batting_cage/Sounds/22p-pImperialpMarch.mp3"
+music_dir = "/home/pi/batting_cage/Sounds/"
 
 # optional volume 0 to 1.0
-volume = 0.8
+volume = 0.3
 
-play_music(music_file, volume)
+while True:
+   #for root, dirs, filenames in os.walk(music_dir):
+   #   for f in filenames:
+   file_to_play = random.choice(os.listdir(music_dir))
+   play_music(music_dir + file_to_play, volume)
+   timetosleep = random.randrange(5,30,5)
+   print("Sleeping:" + str(timetosleep))
+   time.sleep(timetosleep)  
 
